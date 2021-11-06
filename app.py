@@ -1,0 +1,76 @@
+#Importando Pacotes 
+import pickle
+import streamlit as st
+import streamlit.components.v1 as components
+ 
+# Carregando a Máquina Preditiva
+pickle_in = open('maquina_preditiva.pkl', 'rb') 
+maquina_preditiva = pickle.load(pickle_in)
+
+
+
+#Manter a sessão em cache 
+@st.cache()
+  
+# Criando a função que irá fazer a predição usando os dados impostados pelo usuário do Sistema 
+def prediction(temp_sensor,temp_silo,temp_amb,aeracao,resfrig,aquec,aquec_direto):  
+ 
+
+    # Fazendo Predições
+    prediction = maquina_preditiva.predict([[temp_sensor,temp_silo,temp_amb,aeracao,resfrig,aquec,aquec_direto]])
+    
+    if prediction == 'naoeficiente':
+        pred = 'não foi eficiente'
+    else:
+        pred = 'foi eficiente'
+    return pred
+   
+      
+  
+# Essa função é para criação da webpage  
+def main():  
+
+
+
+
+    # Elementos da webpage
+    # Nesse Ponto vc deve Personalizar o Sistema com sua Marca
+    html_temp = """ 
+                <div style ="background-color:write;padding:13px"> 
+                <h1 style ="color:white;text-align:center;"></h1> 
+                <h2 style ="color:Gray;text-align:center;">Aplicativo Web para Aeração</h2> 
+                <h2 style ="color:Gray;text-align:center;">By Uender Carlos</h2>
+                </div> 
+                """
+
+    
+      
+    # Função do stramlit que faz o display da webpage
+    st.markdown(html_temp, unsafe_allow_html = True) 
+
+    
+    # embed streamlit docs in a streamlit app
+    #components.iframe("https://docs.streamlit.io/en/latest")
+
+      
+    # As linhas abaixo criam as caixas na qual o usuário vai entrar com dados da pessoa que quer o empréstimo para fazer a Predição
+    temp_sensor = st.number_input('TEMPERATURA DO SENSOR')
+    temp_silo = st.number_input('TEMPERATURA DO SILO') 
+    temp_amb = st.number_input("TEMPERATURA DO AMB") 
+    aeracao = st.selectbox("AERACAO",(0,1))
+    resfrig = st.selectbox('RESFRIAMENTO AERACAO',(0,1))
+    aquec = st.selectbox("AQUECIMENTO AERACAO",(0,1))
+    aquec_direto = st.selectbox("AQUECIMENTO DIRETO AERACÃO",(0,1))
+    result =""
+
+
+
+
+    #Quando o Usuário clicar no botão "Verificar" a Máquina Preditiva faz seu trabalho
+    if st.button("Verificar"): 
+        result = prediction(temp_sensor,temp_silo,temp_amb,aeracao,resfrig,aquec,aquec_direto) 
+        st.success('A aeração  {}'.format(result))
+        #print(emprestimo)
+     
+if __name__=='__main__': 
+    main()

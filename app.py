@@ -15,6 +15,26 @@ maquina_preditiva = pickle.load(pickle_in)
 # Criando a função que irá fazer a predição usando os dados impostados pelo usuário do Sistema 
 def prediction(temp_sensor,temp_silo,temp_amb,aeracao,resfrig,aquec,aquec_direto):  
  
+    if aeracao == "Não":
+        aeracao = 0
+    else:
+        aeracao = 1
+ 
+    if resfrig == "Não":
+        resfrig = 0
+    else:
+        resfrig = 1
+ 
+    if aquec == "Não":
+        aquec = 0
+    else:
+        aquec = 1
+
+    if aquec_direto == "Não":
+        aquec_direto = 0
+    else:
+        aquec_direto = 1
+ 
 
     # Fazendo Predições
     prediction = maquina_preditiva.predict([[temp_sensor,temp_silo,temp_amb,aeracao,resfrig,aquec,aquec_direto]])
@@ -57,10 +77,10 @@ def main():
     temp_sensor = st.number_input('TEMPERATURA DO SENSOR')
     temp_silo = st.number_input('TEMPERATURA DO SILO') 
     temp_amb = st.number_input("TEMPERATURA DO AMB") 
-    aeracao = st.selectbox("AERACAO",(0,1))
-    resfrig = st.selectbox('RESFRIAMENTO AERACAO',(0,1))
-    aquec = st.selectbox("AQUECIMENTO AERACAO",(0,1))
-    aquec_direto = st.selectbox("AQUECIMENTO DIRETO AERACÃO",(0,1))
+    aeracao = st.selectbox("AERACAO",("Sim","Não"))
+    resfrig = st.selectbox('RESFRIAMENTO AERACAO',("Sim","Não"))
+    aquec = st.selectbox("AQUECIMENTO AERACAO",("Sim","Não"))
+    aquec_direto = st.selectbox("AQUECIMENTO DIRETO AERACÃO",("Sim","Não"))
     result =""
 
 

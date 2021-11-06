@@ -1,6 +1,6 @@
 streamlit==0.83.0
 streamlit_webrtc==0.23.3
 requests==2.22.0
-pickle
+pickle5
 
 

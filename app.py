@@ -58,7 +58,7 @@ def main():
     html_temp = """ 
                 <div style ="background-color:write;padding:13px"> 
                 <h1 style ="color:white;text-align:center;"></h1> 
-                <h2 style ="color:Gray;text-align:center;">Aplicativo Web para Aeração</h2> 
+                <h2 style ="color:Gray;text-align:center;">AplicativoFFFF Web para Aeração</h2> 
                 <h2 style ="color:Gray;text-align:center;">By Uender Carlos</h2>
                 </div> 
                 """

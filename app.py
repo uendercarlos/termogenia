@@ -56,9 +56,7 @@ def main():
 
     
       
-    # Função do stramlit que faz o display da webpage
-    st.markdown(html_temp, unsafe_allow_html = True) 
-
+    
     
     # embed streamlit docs in a streamlit app
     #components.iframe("https://docs.streamlit.io/en/latest")

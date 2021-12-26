@@ -49,19 +49,10 @@ def prediction(temp_sensor,temp_silo,temp_amb,aeracao,resfrig,aquec,aquec_direto
   
 # Essa função é para criação da webpage  
 def main():  
+    st.image("silo.png")
+    st.title("Aeração")
 
 
-
-
-    # Elementos da webpage
-    # Nesse Ponto vc deve Personalizar o Sistema com sua Marca
-    html_temp = """ 
-                <div style ="background-color:write;padding:13px"> 
-                <h1 style ="color:white;text-align:center;"></h1> 
-                <h2 style ="color:Gray;text-align:center;">Aplicativo Web para Aeração</h2> 
-                <h2 style ="color:Gray;text-align:center;">By Uender Carlos</h2>
-                </div> 
-                """
 
     
       
